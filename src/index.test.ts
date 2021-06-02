@@ -1,8 +1,8 @@
-import * as prettier from 'prettier';
-import * as assert from 'assert';
+import * as prettier from "prettier";
+import * as assert from "assert";
 
-describe('prettier-plugin-fluent', () => {
-  it('alphabetizes entries', () => {
+describe("prettier-plugin-fluent", () => {
+  it("alphabetizes entries", () => {
     const code = `
 b = Beluga
 bad syntax stays with subsequent entry
@@ -12,8 +12,8 @@ bad syntax at end is preserved
 `;
 
     const pretty = prettier.format(code, {
-      parser: 'fluent-parse' as any,
-      plugins: ['.'],
+      parser: "fluent-parse" as any,
+      plugins: ["."],
     });
 
     assert.equal(

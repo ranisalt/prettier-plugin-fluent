@@ -1,24 +1,24 @@
-import * as prettier from 'prettier';
-import * as FTL from '@fluent/syntax';
+import * as prettier from "prettier";
+import * as FTL from "@fluent/syntax";
 
 // A prettier plugin that alphabetizes the entries in an Fluent file
 
 const plugin: prettier.Plugin = {
   languages: [
     {
-      name: 'Fluent',
-      parsers: ['fluent-parse'],
-      extensions: ['.ftl'],
+      name: "Fluent",
+      parsers: ["fluent-parse"],
+      extensions: [".ftl"],
     },
   ],
   parsers: {
-    'fluent-parse': {
+    "fluent-parse": {
       parse(text: string): any {
         return FTL.parse(text, {
           withSpans: true,
         });
       },
-      astFormat: 'fluent-ast',
+      astFormat: "fluent-ast",
       locStart(node: any) {
         if (!(node instanceof FTL.Span)) {
           return -1;
@@ -34,7 +34,7 @@ const plugin: prettier.Plugin = {
     },
   },
   printers: {
-    'fluent-ast': {
+    "fluent-ast": {
       print(
         path: prettier.FastPath,
         _options: prettier.ParserOptions,
@@ -56,7 +56,7 @@ const plugin: prettier.Plugin = {
             const id =
               entry instanceof FTL.Message || entry instanceof FTL.Term
                 ? entry.id.name
-                : '';
+                : "";
             entries.push({
               id,
               entry,
